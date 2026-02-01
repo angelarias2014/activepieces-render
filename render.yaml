@@ -5,7 +5,7 @@ services:
     image:
       url: docker.io/activepieces/activepieces:latest
     region: oregon
-    plan: standard
+    plan: free
     envVars:
       - key: NODE_OPTIONS
         value: "--max-old-space-size=768"
