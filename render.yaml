@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: activepieces
+    runtime: image
+    image:
+      url: docker.io/activepieces/activepieces:latest
+    region: oregon
+    plan: starter
+    envVars:
+      - key: AP_ENGINE_EXECUTABLE_PATH
+        value: dist/packages/engine/main.js
+      - key: AP_EXECUTION_MODE
+        value: UNSANDBOXED
+      - key: AP_ENCRYPTION_KEY
+        value: 081322097dac2ab205749a0172c6ee05
+      - key: AP_JWT_SECRET
+        value: eb7293f58bf22b78d35238a44220e7332190955914410e4307617b52fb3c5e75
+      - key: AP_FRONTEND_URL
+        fromService:
+          type: web
+          name: activepieces
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: AP_DB_TYPE
+        value: POSTGRES
+      - key: AP_POSTGRES_URL
+        fromDatabase:
+          name: activepieces-db
+          property: connectionString
+      - key: AP_REDIS_URL
+        fromService:
+          type: redis
+          name: activepieces-redis
+          property: connectionString
+
+  - type: redis
+    name: activepieces-redis
+    region: oregon
+    plan: starter
+    ipAllowList:
+      - source: 0.0.0.0/0
+        description: everywhere
+
+databases:
+  - name: activepieces-db
+    region: oregon
+    plan: starter
