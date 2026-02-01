@@ -37,7 +37,7 @@ services:
   - type: redis
     name: activepieces-redis
     region: oregon
-    plan: starter
+    plan: free
     ipAllowList:
       - source: 0.0.0.0/0
         description: everywhere
