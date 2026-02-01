@@ -5,7 +5,7 @@ services:
     image:
       url: docker.io/activepieces/activepieces:latest
     region: oregon
-    plan: starter
+    plan: standard
     envVars:
       - key: AP_ENGINE_EXECUTABLE_PATH
         value: dist/packages/engine/main.js
