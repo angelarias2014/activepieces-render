@@ -7,6 +7,8 @@ services:
     region: oregon
     plan: standard
     envVars:
+      - key: NODE_OPTIONS
+        value: "--max-old-space-size=768"
       - key: AP_ENGINE_EXECUTABLE_PATH
         value: dist/packages/engine/main.js
       - key: AP_EXECUTION_MODE
