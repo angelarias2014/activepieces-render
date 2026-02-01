@@ -43,4 +43,4 @@ services:
 databases:
   - name: activepieces-db
     region: oregon
-    plan: starter
+    plan: free
